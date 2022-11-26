@@ -5,12 +5,14 @@ name: Node.js Package
 
 
 on:
-  release:
-    types: [created]
+  # release:
+  #   types: [created]
+  # push:
+  #   branches: [ $default-branch ]
   push:
-    branches: [ $default-branch ]
-  pull_request:
-    branches: [ $default-branch ]
+    branches: [ master ]
+  # pull_request:
+  #   branches: [ $default-branch ]
 
 jobs:
   build:
