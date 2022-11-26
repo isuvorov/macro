@@ -19,9 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+      - uses: pnpm/action-setup@v2
         with:
-          version: 6.10.0
+          version: 7
       - uses: actions/setup-node@v3
         with:
           node-version: 18.10
@@ -33,9 +33,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+      - uses: pnpm/action-setup@v2
         with:
-          version: 6.10.0
+          version: 7
       - uses: actions/setup-node@v3
         with:
           node-version: 18.10
@@ -45,17 +45,3 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
-
-
-
-# steps:
-# - uses: actions/checkout@v3
-# - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
-#   with:
-#     version: 6.10.0
-# - uses: actions/setup-node@v3
-#   with:
-#     node-version: '14'
-#     cache: 'pnpm'
-# - run: pnpm install
-# - run: pnpm test
