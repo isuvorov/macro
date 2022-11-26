@@ -6,28 +6,53 @@ name: Node.js Package
 on:
   release:
     types: [created]
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+        with:
+          version: 6.10.0
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
-      - run: npm ci
-      - run: npm test
+          node-version: 18.10
+      - run: pnpm ci
+      - run: pnpm test
 
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+        with:
+          version: 6.10.0
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18.10
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm publish
+      - run: pnpm ci
+      - run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+
+
+
+
+# steps:
+# - uses: actions/checkout@v3
+# - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+#   with:
+#     version: 6.10.0
+# - uses: actions/setup-node@v3
+#   with:
+#     node-version: '14'
+#     cache: 'pnpm'
+# - run: pnpm install
+# - run: pnpm test
