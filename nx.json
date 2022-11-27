@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "affected": {
+    "defaultBase": "master"
+  },
   "npmScope": "macro",
   "tasksRunnerOptions": {
     "default": {
@@ -15,16 +18,9 @@
       }
     }
   },
-  "targetDefaults": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "production",
-        "^production"
-      ]
-    }
+  "workspaceLayout": {
+    "appsDir": "apps",
+    "libsDir": "packages"
   },
   "namedInputs": {
     "default": [
@@ -36,8 +32,16 @@
     ],
     "sharedGlobals": []
   },
-  "workspaceLayout": {
-    "appsDir": "packages",
-    "libsDir": "packages"
-  }
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
+    }
+  },
+  "defaultProject": "@nrwl/nx-source"
 }
