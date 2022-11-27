@@ -1,0 +1,35 @@
+{
+  "name": "nodelib",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/nodelib/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/nodelib/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/nodelib/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/nodelib",
+        "tsConfig": "packages/nodelib/tsconfig.lib.json",
+        "packageJson": "packages/nodelib/package.json",
+        "main": "packages/nodelib/src/index.ts",
+        "assets": ["packages/nodelib/*.md"]
+      }
+    }
+  },
+  "tags": []
+}

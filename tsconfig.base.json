@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@macrobe/nestlib": ["packages/nestlib/src/index.ts"],
+      "@macrobe/nextlib": ["packages/nextlib/src/index.ts"],
+      "@macrobe/nodelib": ["packages/nodelib/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
