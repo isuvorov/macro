@@ -1,0 +1,19 @@
+stages:
+  - triggers
+avatar_manager:
+  stage: triggers
+  trigger:
+    include: services/avatar-manager/.gitlab-ci.yml
+    strategy: depend
+  only:
+    - master
+    - prod/web
+image_manager:
+  stage: triggers
+  trigger:
+    include: services/image-manager/.gitlab-ci.yml
+    strategy: depend
+  only:
+    - master
+    - prod/web
+  # when: manual

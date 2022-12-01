@@ -1,6 +1,6 @@
 include: 
   - project: devops/ci
-    file: /actions/index.yml
+    file: /actions/index.tml
 
 .all-branches:
   only:
@@ -39,9 +39,10 @@ deploy_prod:
   tags: [deploy, worker]
   variables:
     DOCKER_SERVICE: prod_nest_workers
-    VIRTUAL_HOST: Host(`macro.buzz.guru`)
+    VIRTUAL_HOST: Host(`nest.buzz.guru`)
+    # DOCKER_STACK_DEBUG: 1
   environment:
     name: prod
-    url: https://macro.buzz.guru
+    url: https://nest.buzz.guru
   only:
     - master
