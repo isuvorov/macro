@@ -16,8 +16,8 @@ build:
   extends: [.build, .all-branches]
   image: node:18.7.0-alpine
   before_script:
-    - npm i -g pnpm@6.16
-    - pnpm config set store-dir .pnpm-store
+    - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@7
+    - pnpm config set store-dir ~/.pnpm-store
   script:
     - NODE_ENV=development pnpm install --frozen-lockfile
     - npm run build
