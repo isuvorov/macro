@@ -1,6 +1,6 @@
 include: 
   - project: devops/ci
-    file: /actions/index.tml
+    file: /actions/index.yml
 
 .all-branches:
   only:
