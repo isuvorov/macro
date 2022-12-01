@@ -18,3 +18,8 @@ https://sysdig.com/blog/dockerfile-best-practices/
 
 
 https://blog.logrocket.com/creating-separate-monorepo-ci-cd-pipelines-github-actions/
+
+
+==========
+
+https://www.bam.tech/article/set-up-a-gitlab-ci-cd-for-react-or-react-native-monorepo

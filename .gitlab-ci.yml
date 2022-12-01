@@ -1,0 +1,47 @@
+include: 
+  - project: devops/ci
+    file: /actions/index.yml
+
+.all-branches:
+  only:
+    - master
+    - develop
+
+stages:
+  - build
+  - docker
+  - deploy
+
+build:
+  extends: [.build, .all-branches]
+  image: node:18.7.0-alpine
+  before_script:
+    - npm i -g pnpm@6.16
+    - pnpm config set store-dir .pnpm-store
+  script:
+    - NODE_ENV=development pnpm install --frozen-lockfile
+    - npm run build
+  artifacts:
+    paths:
+     - dist/
+  cache:
+    key:
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - .pnpm-store
+
+docker:
+  extends: [.docker, .all-branches]
+
+deploy_prod:
+  extends: [.deploy-docker]
+  tags: [deploy, worker]
+  variables:
+    DOCKER_SERVICE: prod_nest_workers
+    VIRTUAL_HOST: Host(`macro.buzz.guru`)
+  environment:
+    name: prod
+    url: https://macro.buzz.guru
+  only:
+    - master
